@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "@/styles/reset.css";
 import "@/styles/globals.css";
 import { openSans } from "@/shared/config/fonts";
-
+import { kanit } from "@/shared/config/fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${openSans}`}>
+      <body className={`${kanit.className || openSans.className}`}>
         {children}
       </body>
     </html>

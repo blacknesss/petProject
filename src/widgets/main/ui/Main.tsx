@@ -1,17 +1,36 @@
 import Image from 'next/image';
 import styles from './main.module.css';
 import { TodoCheckbox } from '@/features/todo/ui/todoCheckbox';
+import { INote } from '@/shared/config/types';
 
 
 export default function Main() {
-  const data = [
+  const data: INote[] = [
     {
-      task: 'NOTE'
-    }
+      id: 1,
+      task: 'NOTE',
+    },
+    {
+      id: 2,
+      task: 'NOTE',
+    },
+    {
+      id: 3,
+      task: 'NOTE',
+    },
   ]
+  if (data.length < 1){
+    return (
+      <div style={{alignItems: 'center', display: 'flex', flexDirection: 'column', rowGap:'15px', userSelect: 'none'}} className='container'>
+          <Image src={`/nothing.svg`} alt='#' width={221} height={174} priority/>
+          <p>Empty...</p>
+      </div>
+    )
+  }
   return (
     <div>
       <div className='container'>
+        <div style={{position: 'relative', display: 'flex', flexDirection: 'column', rowGap: '35px'}}>
           {data.map((item, id) => (
             <div key={id} className={styles.mainKey}>
               <TodoCheckbox item = {item} id={id}/>
@@ -22,7 +41,9 @@ export default function Main() {
               </div>
             </div>
           ))}
+        </div>
       </div>
+          <button className={styles.btn}>Add</button>
     </div>
   )
 }
