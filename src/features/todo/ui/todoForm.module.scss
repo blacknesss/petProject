@@ -1,0 +1,39 @@
+.todoForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 15px;
+    input{
+        width: 595px;
+        height: 100%;
+        padding: 9px 16px;
+        border-radius: 5px;
+        border: 1px #EDEDED solid;
+
+        &{
+            outline: none;
+        }
+    }
+}
+.formImg{
+    border: 1px #EDEDED solid;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgba(116, 175, 243, 0.705);
+}
+
+.selectMenu{
+    border: 1px #EDEDED solid;
+    padding: 9px 5px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    background: rgba(116, 175, 243, 0.705);
+    cursor: pointer;
+    outline: none;
+    
+    option{
+        background: #edededb7;
+        color: rgb(116, 175, 243);
+    }
+}
