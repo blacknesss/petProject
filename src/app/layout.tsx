@@ -3,6 +3,7 @@ import "@/styles/reset.css";
 import "@/styles/globals.css";
 import { openSans } from "@/shared/config/fonts";
 import { kanit } from "@/shared/config/fonts";
+import StoreProvider from "./StoreProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${kanit.className || openSans.className}`}>
+        <StoreProvider>
         {children}
+        </StoreProvider>
       </body>
     </html>
   );
