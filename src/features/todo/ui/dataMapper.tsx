@@ -1,12 +1,35 @@
 'use client';
 import Image from "next/image";
-import { useAppSelector } from "../model/hooks";
+import { useAppDispatch, useAppSelector } from "../model/hooks";
 import styles from '@/widgets/main/ui/main.module.scss';
 import { TodoCheckbox } from "./todoCheckbox";
-import AddMenu from "./addMenu";
+import { deleteAction, fetchAction, patchAction,  } from "../api/todoApi";
+import { useState } from "react";
+import { Modal } from "@/shared/ui/Modal/modal";
 
 export default function DataMapper() {
+    
+    const [currentInput, setCurrentInput] = useState<string>('')
+    const [active, setActive] = useState<boolean>(false)
     const data = useAppSelector(state => state.todos);
+    const dispatch = useAppDispatch();
+
+    
+    const handleClick = async (inp:string, id:number) => {
+        
+        if(inp.length > 0){
+           await dispatch(patchAction({currentInput, id}))
+        }
+        setActive(false)
+        dispatch(fetchAction())
+    }
+
+
+    const handleDelete = async (id:number) => {
+        await dispatch(deleteAction(id))
+        dispatch(fetchAction())
+    }
+
     return (
         <div
             style={{
@@ -30,6 +53,7 @@ export default function DataMapper() {
 
                     <div className={styles.FCG}>
                         <Image
+                            onClick={() => setActive(true)}
                             className={styles.mainImg}
                             width={18}
                             height={18}
@@ -37,6 +61,7 @@ export default function DataMapper() {
                             alt='#'
                         />
                         <Image
+                        onClick={() => handleDelete(Number(item.id))}
                             className={styles.mainImg}
                             width={18}
                             height={18}
@@ -44,6 +69,16 @@ export default function DataMapper() {
                             alt='#'
                         />
                     </div>
+                    <Modal active={active} setActive={setActive}>
+                        <div className={styles.mainModal}>
+                            <input
+                                value={currentInput}
+                                onChange={(e) => setCurrentInput(e.target.value)}
+                                style={{width: '250px', padding: '7px 10px', borderRadius: '7px', border: '1px'}}
+                                type="text" />
+                            <button onClick={() => handleClick(currentInput, Number(item.id))} style={{padding: '5px 10px', borderRadius: '5px', border: '1px', backgroundColor: '#557FAF', cursor: 'pointer'}}>Change</button>
+                        </div>
+                    </Modal>
                 </div>
             ))}
         </div>

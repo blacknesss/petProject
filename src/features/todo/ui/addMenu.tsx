@@ -3,22 +3,28 @@
 import { Modal } from '@/shared/ui/Modal/modal';
 import { useEffect, useState } from 'react';
 import styles from '@/widgets/main/ui/main.module.scss';
-import { useAppDispatch } from '../model/hooks';
+import { useAppDispatch, useAppSelector } from '../model/hooks';
 import { fetchAction, postAction } from '../api/todoApi';
+import { setInput } from '../model/todoSlice';
 
 export default function AddMenu() {
     const [active, setActive]= useState<boolean>(false);
-    const [inp, setInp] = useState('');
+    const inp = useAppSelector(state => state.local.inp) //насколько я понимаю, инпут можно было локальным оставим, не вынося в слайс
     const dispatch = useAppDispatch();
 
     const handleSubmit = () => {
-        dispatch(postAction(inp))
-        .unwrap()
-        .then(() => {
+        if (inp.length > 0){
+            dispatch(postAction(inp))
+            .unwrap()
+            .then(() => {
             dispatch(fetchAction());
-            setInp('');
+            dispatch(setInput(''))
             setActive(false);
-        })
+            })
+        }else{
+            setActive(false)
+        }
+        
     }
 
     useEffect(() => {
@@ -42,7 +48,7 @@ export default function AddMenu() {
                             value={inp}
                             type='text'
                             placeholder='Input your note...'
-                            onChange={(e) => setInp(e.target.value)}
+                            onChange={(e) => dispatch(setInput(e.target.value))}
                         />
                     </div>
                     <div>

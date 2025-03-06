@@ -10,7 +10,7 @@ const TodoCheckbox = ({item}:{item: INote}) => {
         <label htmlFor={item.id} className={styles.FCG}>
             <input id={item.id} type='checkbox'  checked = {value} onChange={() => setValue(!value)}/>
             <p className={value ? styles.lineThrough : ''}>
-                {item.task} #{item.id}
+                {item.task}
             </p>
         </label>
     );
