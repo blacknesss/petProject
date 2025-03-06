@@ -22,8 +22,15 @@ const todoSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchAction.fulfilled, (state, action) => {
-            state.todos = action.payload
+        builder
+          .addCase(fetchAction.fulfilled, (state, action) => {
+            state.todos = action.payload;
+            state.status = 'succesfully'
+        }).addCase(fetchAction.pending, (state) =>{
+            state.status = 'loading'
+        }).addCase(fetchAction.rejected, (state, action) => {
+            state.status = 'unsuccesfully';
+            state.error = action.payload;
         })
     },
 });

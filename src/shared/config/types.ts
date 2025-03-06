@@ -1,7 +1,7 @@
 export interface INote {
     id?: string;
-    task: string;
-    complete?: false;
+    task?: string;
+    complete?: boolean;
 }
 export interface IState {
     todos: INote[];
@@ -9,5 +9,5 @@ export interface IState {
         inp: string;
     }
     status: null | string;
-    error: null | string;
+    error: null | unknown;
 }

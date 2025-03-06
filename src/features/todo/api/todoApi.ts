@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchAction = createAsyncThunk(
     'todos/fetchTodos',
-    async function (_, {rejectWithValue}) {
+    async function (inp:string, {rejectWithValue}) {
         try{
             const res = await fetch('http://localhost:3005/todo')
             
@@ -11,7 +11,13 @@ export const fetchAction = createAsyncThunk(
                 throw new Error(`server error`)
             }
 
-            const data = await res.json()
+            let data:INote[] = await res.json();
+            if (inp) {
+                data = data.filter(item => {
+                    return item.task?.toLowerCase().includes(inp.toLowerCase())
+                })
+            }
+            
             return data
 
         } catch(error:any){
@@ -52,7 +58,7 @@ export const patchAction = createAsyncThunk(
             const newTask:INote = {
                 task: currentInput
             }
-            const res = await fetch(`http://localhost:3005/todo/${id}`, {
+            const res = await fetch(`http://localhost:3005/todo/${id}/task`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,6 +70,32 @@ export const patchAction = createAsyncThunk(
                 throw new Error(`Server error!`);
             }
 
+            return await res.json()
+        }catch (e:any){
+            return rejectWithValue(e.message)
+        }
+    }
+)
+
+export const patchCompleteAction = createAsyncThunk(
+    'todos/patchCompleteTodos',
+    async function ({value, id}:{value:boolean, id:number}, {rejectWithValue}) {
+        try{
+            
+            const res = await fetch(`http://localhost:3005/todo/${id}/complete`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    complete: value
+                })
+            })
+            
+            if (!res.ok) {
+                throw new Error(`Server error!`);
+            }
+            
             return await res.json()
         }catch (e:any){
             return rejectWithValue(e.message)

@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../model/hooks";
 import styles from '@/widgets/main/ui/main.module.scss';
 import { TodoCheckbox } from "./todoCheckbox";
 import { deleteAction, fetchAction, patchAction,  } from "../api/todoApi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "@/shared/ui/Modal/modal";
 
 export default function DataMapper() {
@@ -12,6 +12,7 @@ export default function DataMapper() {
     const [currentInput, setCurrentInput] = useState<string>('')
     const [active, setActive] = useState<boolean>(false)
     const data = useAppSelector(state => state.todos);
+    const preloader = useAppSelector(state => state.status);
     const dispatch = useAppDispatch();
 
     
@@ -21,14 +22,17 @@ export default function DataMapper() {
            await dispatch(patchAction({currentInput, id}))
         }
         setActive(false)
-        dispatch(fetchAction())
+        dispatch(fetchAction(''))
     }
 
 
     const handleDelete = async (id:number) => {
         await dispatch(deleteAction(id))
-        dispatch(fetchAction())
+        dispatch(fetchAction(''))
     }
+    useEffect(() => {
+        dispatch(fetchAction(''))
+    }, [])
 
     return (
         <div
@@ -39,10 +43,11 @@ export default function DataMapper() {
                 rowGap: '35px',
             }}
         >
+            {preloader === 'loading' && (<h1 style={{display: 'flex', justifyContent: 'center'}}>loading...</h1>)}
             {data.length < 1 ?
             (
                 <div style={{alignItems: 'center', display: 'flex', flexDirection: 'column', rowGap:'15px', userSelect: 'none'}} className='container'>
-                    <Image src={`/nothing.svg`} alt='#' width={221} height={174} priority/>
+                    <Image src={`/nothing.svg`} alt='#' width={221} height={174} />
                     <p>Empty...</p>
                 </div>
             )

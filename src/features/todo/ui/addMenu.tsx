@@ -17,7 +17,7 @@ export default function AddMenu() {
             dispatch(postAction(inp))
             .unwrap()
             .then(() => {
-            dispatch(fetchAction());
+            dispatch(fetchAction(''));
             dispatch(setInput(''))
             setActive(false);
             })
@@ -27,9 +27,6 @@ export default function AddMenu() {
         
     }
 
-    useEffect(() => {
-        dispatch(fetchAction())
-      }, [dispatch])
 
     return (
         <>
