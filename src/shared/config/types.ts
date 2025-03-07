@@ -4,8 +4,8 @@ export interface INote {
     complete?: boolean;
 }
 export interface IState {
-    todos: INote[];
-    tasks: INote[];
+    todos: INote[] | undefined;
+    tasks: INote[] | undefined;
     local: {
         inp: string;
     }

@@ -9,21 +9,26 @@ import styles from './todoForm.module.scss';
 export default function TodoForm() {
   const [inp, setInp] = useState<string>('');
   const [theme, setTheme] = useState<boolean>(() => {
-    const savedTheme = localStorage.getItem('theme');
-    return savedTheme === 'dark'
-  })
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem('theme');
+      return savedTheme === 'dark';
+    }
+    return false;
+  });
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
       const root = document.body;
-      if(theme){
-        root.classList.add('dark')
-        localStorage.setItem('theme', 'dark');
-        root.classList.remove('light')
-      }else{
-        root.classList.remove('dark')
-        localStorage.setItem('theme', 'light');
-        root.classList.add('light')
+        if (theme) {
+          root.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+          root.classList.remove('light');
+        } else {
+          root.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+          root.classList.add('light');
+        }
       }
       dispatch(fetchAction(inp))
   }, [inp, dispatch, theme])

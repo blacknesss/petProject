@@ -44,7 +44,7 @@ export default function DataMapper() {
             }}
         >
             {preloader === 'loading' && (<h1 style={{display: 'flex', justifyContent: 'center'}}>loading...</h1>)}
-            {data.length < 1 ?
+            {!data || data.length < 1 ?
             (
                 <div style={{alignItems: 'center', display: 'flex', flexDirection: 'column', rowGap:'15px', userSelect: 'none'}} className='container'>
                     <Image src={`/nothing.svg`} alt='#' width={221} height={174} />
@@ -52,7 +52,7 @@ export default function DataMapper() {
                 </div>
             )
             :
-            data.map((item) => (
+            data?.map((item) => (
                 <div key={item.id} className={styles.mainKey}>
                     <TodoCheckbox item={item} />
 

@@ -21,7 +21,7 @@ const todoSlice = createSlice({
         setInput: (state, action:PayloadAction<string>) =>{
             state.local.inp = action.payload
         },
-        setTasks: (state, action:PayloadAction<INote[]>) =>{
+        setTasks: (state, action:PayloadAction<INote[] | undefined>) =>{
             state.tasks = action.payload
         }
     },

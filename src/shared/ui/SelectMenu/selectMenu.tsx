@@ -14,7 +14,7 @@ const SelectMenu:FC = () => {
   }
 
   const filteredData = useMemo(() => {
-    return data.filter((item) => {
+    return data?.filter((item) => {
       if (isSelected === 'Complete') {
         return item.complete !== false;
       } else if (isSelected === 'Incomplete') {
