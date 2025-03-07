@@ -27,7 +27,7 @@ const SelectMenu:FC = () => {
 
   useEffect(() => {
       dispatch(setTasks(filteredData))
-  }, [filteredData])
+  }, [dispatch, filteredData])
 
 
   return (

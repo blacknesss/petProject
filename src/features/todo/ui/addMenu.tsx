@@ -1,7 +1,7 @@
 'use client';
 
 import { Modal } from '@/shared/ui/Modal/modal';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from '@/widgets/main/ui/main.module.scss';
 import { useAppDispatch, useAppSelector } from '../model/hooks';
 import { fetchAction, postAction } from '../api/todoApi';

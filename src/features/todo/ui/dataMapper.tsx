@@ -32,7 +32,7 @@ export default function DataMapper() {
     }
     useEffect(() => {
         dispatch(fetchAction(''))
-    }, [])
+    }, [dispatch])
 
     return (
         <div

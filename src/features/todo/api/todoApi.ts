@@ -20,8 +20,10 @@ export const fetchAction = createAsyncThunk(
             
             return data
 
-        } catch(error:any){
-            return rejectWithValue(error.message);
+        } catch(error:unknown){
+            if(error instanceof Error){
+                return rejectWithValue(error.message);
+            }
         }
     }
 )
@@ -45,8 +47,10 @@ export const postAction = createAsyncThunk(
             if (!res.ok) {
                 throw new Error(`Server error!`);
             }
-        }catch (e:any){
-            return rejectWithValue(e.message)
+        }catch(error:unknown){
+            if(error instanceof Error){
+                return rejectWithValue(error.message);
+            }
         }
     }
 )
@@ -71,8 +75,10 @@ export const patchAction = createAsyncThunk(
             }
 
             return await res.json()
-        }catch (e:any){
-            return rejectWithValue(e.message)
+        }catch(error:unknown){
+            if(error instanceof Error){
+                return rejectWithValue(error.message);
+            }
         }
     }
 )
@@ -97,8 +103,10 @@ export const patchCompleteAction = createAsyncThunk(
             }
             
             return await res.json()
-        }catch (e:any){
-            return rejectWithValue(e.message)
+        }catch(error:unknown){
+            if(error instanceof Error){
+                return rejectWithValue(error.message);
+            }
         }
     }
 )
@@ -117,8 +125,10 @@ export const deleteAction = createAsyncThunk(
             }
 
             return id
-        }catch (e:any){
-            return rejectWithValue(e.message)
+        }catch(error:unknown){
+            if(error instanceof Error){
+                return rejectWithValue(error.message);
+            }
         }
     }
 )
