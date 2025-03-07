@@ -1,8 +1,8 @@
 'use client';
 import { FC,useEffect,useMemo, useState } from "react";
-import styles from '@/features/todo/ui/todoForm.module.scss';
-import { useAppDispatch, useAppSelector } from "@/features/todo/model/hooks";
-import { setTasks } from "@/features/todo/model/todoSlice";
+import styles from '../../../features/todo/ui/todoForm.module.scss';
+import { useAppDispatch, useAppSelector } from "../../../features/todo/model/hooks";
+import { setTasks } from "../../../features/todo/model/todoSlice";
 
 
 const SelectMenu:FC = () => {

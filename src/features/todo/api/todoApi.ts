@@ -1,4 +1,4 @@
-import { INote } from "@/shared/config/types";
+import { INote } from "../../../shared/config/types";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchAction = createAsyncThunk(

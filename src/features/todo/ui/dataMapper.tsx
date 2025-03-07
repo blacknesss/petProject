@@ -1,11 +1,11 @@
 'use client';
 import Image from "next/image";
 import { useAppDispatch, useAppSelector } from "../model/hooks";
-import styles from '@/widgets/main/ui/main.module.scss';
+import styles from '../../../widgets/main/ui/main.module.scss';
 import { TodoCheckbox } from "./todoCheckbox";
 import { deleteAction, fetchAction, patchAction,  } from "../api/todoApi";
 import { useEffect, useState } from "react";
-import { Modal } from "@/shared/ui/Modal/modal";
+import { Modal } from "../../../shared/ui/Modal/modal";
 
 export default function DataMapper() {
     

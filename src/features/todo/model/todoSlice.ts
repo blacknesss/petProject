@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchAction } from "../api/todoApi";
-import { INote, IState } from "@/shared/config/types";
+import { INote, IState } from "../../../shared/config/types";
 
 
 

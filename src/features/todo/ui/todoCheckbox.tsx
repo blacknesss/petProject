@@ -1,6 +1,6 @@
 "use client";
-import { INote } from '@/shared/config/types';
-import styles from '@/widgets/main/ui/main.module.scss';
+import { INote } from '../../../shared/config/types';
+import styles from '../../../widgets/main/ui/main.module.scss';
 import { fetchAction, patchCompleteAction } from '../api/todoApi';
 import { useAppDispatch} from '../model/hooks';
 

@@ -1,5 +1,5 @@
 'use client';
-import { SelectMenu } from "@/shared/ui/SelectMenu/selectMenu";
+import { SelectMenu } from "../../../shared/ui/SelectMenu/selectMenu";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { fetchAction } from "../api/todoApi";
