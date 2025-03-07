@@ -37,3 +37,32 @@
         color: rgb(116, 175, 243);
     }
 }
+
+@media screen and (max-width: 1020px){
+    .todoForm{
+        input{
+            width: 395px;
+        }
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .todoForm{
+        input{
+            width: 200px;
+        }
+    }
+    .selectMenu{
+        width: 100px;
+    }
+}
+@media screen and (max-width: 378px) {
+    .todoForm{
+        input{
+            width: 160px;
+        }
+    }
+    .selectMenu{
+        width: 100px;
+    }
+}

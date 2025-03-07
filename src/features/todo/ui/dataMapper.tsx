@@ -77,9 +77,9 @@ export default function DataMapper() {
                     <Modal active={active} setActive={setActive}>
                         <div className={styles.mainModal}>
                             <input
+                                className={styles.inp}
                                 value={currentInput}
                                 onChange={(e) => setCurrentInput(e.target.value)}
-                                style={{width: '250px', padding: '7px 10px', borderRadius: '7px', border: '1px'}}
                                 type="text" />
                             <button onClick={() => handleClick(currentInput, Number(item.id))} style={{padding: '5px 10px', borderRadius: '5px', border: '1px', backgroundColor: '#557FAF', cursor: 'pointer'}}>Change</button>
                         </div>
