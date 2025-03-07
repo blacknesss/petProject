@@ -11,7 +11,7 @@ export default function DataMapper() {
     
     const [currentInput, setCurrentInput] = useState<string>('')
     const [active, setActive] = useState<boolean>(false)
-    const data = useAppSelector(state => state.todos);
+    const data = useAppSelector(state => state.tasks);
     const preloader = useAppSelector(state => state.status);
     const dispatch = useAppDispatch();
 

@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchAction } from "../api/todoApi";
-import { IState } from "@/shared/config/types";
+import { INote, IState } from "@/shared/config/types";
 
 
 
 const initialState:IState = {
     todos: [],
+    tasks: [],
     local: {
         inp: '',
     },
@@ -19,6 +20,9 @@ const todoSlice = createSlice({
     reducers: {
         setInput: (state, action:PayloadAction<string>) =>{
             state.local.inp = action.payload
+        },
+        setTasks: (state, action:PayloadAction<INote[]>) =>{
+            state.tasks = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -34,5 +38,5 @@ const todoSlice = createSlice({
         })
     },
 });
-export const {setInput} = todoSlice.actions;
+export const {setInput, setTasks} = todoSlice.actions;
 export default todoSlice.reducer;

@@ -5,6 +5,7 @@ export interface INote {
 }
 export interface IState {
     todos: INote[];
+    tasks: INote[];
     local: {
         inp: string;
     }
