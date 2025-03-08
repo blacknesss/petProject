@@ -5,7 +5,7 @@ export const fetchAction = createAsyncThunk(
     'todos/fetchTodos',
     async function (inp:string, {rejectWithValue}) {
         try{
-            const res = await fetch('http://localhost:3005/todo')
+            const res = await fetch('https://pet-wioa.onrender.com/todo')
             
             if(!res.ok){
                 throw new Error(`server error`)
@@ -36,7 +36,7 @@ export const postAction = createAsyncThunk(
                 task: inp,
                 complete: false,
             }
-            const res = await fetch('http://localhost:3005/todo', {
+            const res = await fetch('https://pet-wioa.onrender.com/todo', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ export const patchAction = createAsyncThunk(
             const newTask:INote = {
                 task: currentInput
             }
-            const res = await fetch(`http://localhost:3005/todo/${id}/task`, {
+            const res = await fetch(`https://pet-wioa.onrender.com/todo/${id}/task`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ export const patchCompleteAction = createAsyncThunk(
     async function ({value, id}:{value:boolean, id:number}, {rejectWithValue}) {
         try{
             
-            const res = await fetch(`http://localhost:3005/todo/${id}/complete`, {
+            const res = await fetch(`https://pet-wioa.onrender.com/todo/${id}/complete`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ export const deleteAction = createAsyncThunk(
     async function (id:number, {rejectWithValue}) {
         console.log(id)
         try{
-            const res = await fetch(`http://localhost:3005/todo/${id}`, {
+            const res = await fetch(`https://pet-wioa.onrender.com/todo/${id}`, {
                 method: 'DELETE',
             })
             
