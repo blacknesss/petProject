@@ -1,6 +1,6 @@
 'use client';
 
-import { makeStore, AppStore } from "@/features/todo/model/store";
+import { makeStore, AppStore } from "../features/todo/model/store";
 import { useRef } from "react";
 import { Provider } from "react-redux";
 

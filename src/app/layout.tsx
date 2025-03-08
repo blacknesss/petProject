@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import "@/styles/reset.css";
-import "@/styles/globals.css";
-import { openSans } from "@/shared/config/fonts";
-import { kanit } from "@/shared/config/fonts";
+import "../styles/reset.css";
+import "../styles/globals.css";
+import { openSans } from "../shared/config/fonts";
+import { kanit } from "../shared/config/fonts";
 import StoreProvider from "./StoreProvider";
 
 export const metadata: Metadata = {
